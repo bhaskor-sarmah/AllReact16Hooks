@@ -1,26 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import AllUseState from "./component/HooksExamples/UseState/AllUseState";
+import AllUseEffect from "./component/HooksExamples/UseEffect/AllUseEffect";
+import AllUseRef from "./component/HooksExamples/UseRef/AllUseRef";
+import AllUserLayoutEffect from "./component/HooksExamples/UseLayoutEffect/AllUserLayoutEffect";
+import AllUseCallback from "./component/HooksExamples/UseCallback/AllUseCallback";
+import AllUseMemo from "./component/HooksExamples/UseMemo/AllUseMemo";
+import AllUseReducer from "./component/HooksExamples/UseReducer/AllUseReducer";
+import SimpleUseContext from "./component/HooksExamples/UseContext/SimpleUseContext";
+import AdvanceUseContext1 from "./component/HooksExamples/UseContext/AdvanceUseContext1";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      {/* <AllUseState /> */}
+      {/* <AllUseEffect /> */}
+      {/* <AllUseRef /> */}
+      {/* <AllUserLayoutEffect /> */}
+      {/* <AllUseCallback /> */}
+      {/* <AllUseMemo /> */}
+      {/* <AllUseReducer /> */}
+      {/* <SimpleUseContext /> */}
+      <AdvanceUseContext1 />
     </div>
   );
 }
-
-export default App;
