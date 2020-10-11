@@ -8,6 +8,7 @@ import AllUseMemo from "./component/HooksExamples/UseMemo/AllUseMemo";
 import AllUseReducer from "./component/HooksExamples/UseReducer/AllUseReducer";
 import SimpleUseContext from "./component/HooksExamples/UseContext/SimpleUseContext";
 import AdvanceUseContext1 from "./component/HooksExamples/UseContext/AdvanceUseContext1";
+import ReactTableEg from "./component/Utilities/ReactTable/ReactTableEg";
 
 export default function App() {
   return (
@@ -20,7 +21,10 @@ export default function App() {
       {/* <AllUseMemo /> */}
       {/* <AllUseReducer /> */}
       {/* <SimpleUseContext /> */}
-      <AdvanceUseContext1 />
+      {/* <AdvanceUseContext1 /> */}
+
+      {/******UTILITIES******/}
+      <ReactTableEg />
     </div>
   );
 }

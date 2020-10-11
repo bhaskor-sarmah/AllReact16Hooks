@@ -2,7 +2,10 @@ import React from "react";
 
 // This is a custom hook
 export const useFetch = (url) => {
-  const [state, setState] = React.useState({ data: null, loading: true });
+  const [state, setState] = React.useState({
+    data: null,
+    loading: true,
+  });
 
   React.useEffect(() => {
     setState((state) => ({
@@ -10,13 +13,13 @@ export const useFetch = (url) => {
       loading: true,
     }));
     fetch(url)
-      .then((res) => res.text())
-      .then((text) =>
+      .then((res) => res.json())
+      .then((json) => {
         setState({
-          data: text,
+          data: json.data,
           loading: false,
-        })
-      );
+        });
+      });
   }, [url, setState]);
 
   return state;
