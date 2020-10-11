@@ -9,6 +9,7 @@ import AllUseReducer from "./component/HooksExamples/UseReducer/AllUseReducer";
 import SimpleUseContext from "./component/HooksExamples/UseContext/SimpleUseContext";
 import AdvanceUseContext1 from "./component/HooksExamples/UseContext/AdvanceUseContext1";
 import ReactTableEg from "./component/Utilities/ReactTable/ReactTableEg";
+import ReactTableEg2 from "./component/Utilities/ReactTable/ReactTableEg2";
 
 export default function App() {
   return (
@@ -24,7 +25,8 @@ export default function App() {
       {/* <AdvanceUseContext1 /> */}
 
       {/******UTILITIES******/}
-      <ReactTableEg />
+      {/* <ReactTableEg /> */}
+      <ReactTableEg2 />
     </div>
   );
 }

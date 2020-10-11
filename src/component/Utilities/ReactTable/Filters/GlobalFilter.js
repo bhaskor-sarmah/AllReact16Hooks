@@ -17,6 +17,7 @@ export const GlobalFilter = ({
     <span>
       Search:{" "}
       <input
+        type='seacrh'
         value={value || ""}
         onChange={(e) => {
           setValue(e.target.value);

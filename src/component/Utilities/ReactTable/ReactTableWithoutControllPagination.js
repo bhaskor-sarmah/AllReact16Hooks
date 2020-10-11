@@ -7,13 +7,7 @@ import {
 } from "react-table";
 import { GlobalFilter } from "./Filters/GlobalFilter";
 
-const TableControlledPagination = ({
-  columns,
-  data,
-  fetchData,
-  loading,
-  pageCount: controlledPageCount,
-}) => {
+const ReactTableWithoutControllPagination = ({ columns, data, loading }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -38,22 +32,7 @@ const TableControlledPagination = ({
     {
       columns,
       data,
-      manualPagination: true, // Tell the usePagination
-      // hook that we'll handle our own data fetching
-      // This means we'll also have to provide our own
-      // pageCount.
-      pageCount: controlledPageCount,
-      // autoResetFilters: false,
-      // autoResetSortBy: false,
-      // manualFilters: true,
-      // manualSortBy: true
-      autoResetPage: false,
-      autoResetExpanded: false,
-      autoResetGroupBy: false,
-      autoResetSelectedRows: false,
-      autoResetSortBy: false,
-      autoResetFilters: false,
-      autoResetRowState: false,
+      initialState: { pageIndex: 0 },
     },
     useGlobalFilter,
     useSortBy,
@@ -61,16 +40,26 @@ const TableControlledPagination = ({
   );
 
   // Listen for changes in pagination and use the state to fetch our new data
-  React.useEffect(() => {
-    fetchData({ pageIndex, pageSize });
-  }, [fetchData, pageIndex, pageSize]);
 
   // React.useEffect(() => {
   // After the table has updated, always remove the flag
   //   skipPageResetRef.current = false;
   // });
 
-  // Render the UI for your table
+  //    Login for pagination
+  //   const [start, setStart] = React.useState(pageIndex - 5);
+  //   const [stop, setStop] = React.useState(pageIndex + 5);
+  //   let step = 1;
+
+  //   React.useEffect(() => {
+  //     let done = false;
+  //     if (!done) {
+  //       setStart(pageIndex - 5);
+  //       setStop(pageIndex + 4);
+  //     }
+  //     console.log(start, "-", stop, "-", pageOptions.length);
+  //   }, [pageOptions, loading]);
+
   let start = pageIndex - 5;
   let stop = pageIndex + 4;
   let step = 1;
@@ -83,6 +72,14 @@ const TableControlledPagination = ({
   if (stop >= pageOptions.length) {
     stop = pageOptions.length - 1;
     start = pageOptions.length - 10;
+  }
+
+  if (pageOptions.length < 10) {
+    start = 0;
+    stop = pageOptions.length - 1;
+    if (stop < 0) {
+      stop = 0;
+    }
   }
 
   return (
@@ -105,11 +102,14 @@ const TableControlledPagination = ({
                 <button
                   onClick={() => gotoPage(k)}
                   style={{ backgroundColor: "lightgray" }}
+                  key={k}
                 >
                   {k + 1}
                 </button>
               ) : (
-                <button onClick={() => gotoPage(k)}>{k + 1}</button>
+                <button onClick={() => gotoPage(k)} key={k}>
+                  {k + 1}
+                </button>
               );
             })}
             <button
@@ -199,8 +199,12 @@ const TableControlledPagination = ({
               <td colSpan='10000'>Loading...</td>
             ) : (
               <td colSpan='10000'>
-                Showing {page.length} of ~{controlledPageCount * pageSize}{" "}
-                results
+                <span>
+                  Page{" "}
+                  <strong>
+                    {pageIndex + 1} of {pageOptions.length}
+                  </strong>{" "}
+                </span>
               </td>
             )}
           </tr>
@@ -210,4 +214,4 @@ const TableControlledPagination = ({
   );
 };
 
-export default TableControlledPagination;
+export default ReactTableWithoutControllPagination;
